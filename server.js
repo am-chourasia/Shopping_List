@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const items = require('./routes/api/items')
+const path = require('path');
 
 app.use(bodyParser.json());
 morgan(':method :url :status :res[content-length] - :response-time ms')
@@ -18,4 +19,13 @@ const port = process.env.PORT || 5000;
 
 app.use('/api/items', items);
 
+//Serve static assets if in production
+if( process.env.NODE_ENV === 'production'){
+    //Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) =>{
+        res.sendFile(path.resolve( __dirname, 'client', 'build', 'index.html' ));
+    })
+}
 app.listen( port, ()=> console.log("Server started at port "+`${port}`));
