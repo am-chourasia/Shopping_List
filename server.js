@@ -10,7 +10,7 @@ morgan(':method :url :status :res[content-length] - :response-time ms')
 
 const db = require('./config/key').mongoURI;
 
-mongoose.connect(db, {useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect(db, {useUnifiedTopology: true, useNewUrlParser: true})
     .then( ()=> console.log("Connected to MongoDB"))
     .catch( (err) => console.log("Error : "+ err));
 
