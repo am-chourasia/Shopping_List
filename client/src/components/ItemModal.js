@@ -50,7 +50,7 @@ class ItemModal extends React.Component {
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup> 
                                 <Label for='item'> Item </Label>
-                                <Input type='name' name='name' id="item" autoFocus="autofocus" placeholder="Add item" onChange={this.onChange} />
+                                <Input type='name' name='name' id="item" autoFocus="autoFocus" placeholder="Add item" onChange={this.onChange} />
                                 <Button color="dark" style={{marginTop: '5rem'}} block> Confirm </Button>
                             </FormGroup>
                         </Form>
