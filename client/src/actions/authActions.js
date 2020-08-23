@@ -38,6 +38,12 @@ export const register = ({name, email, password}) => dispatch => {
         })
 }
 
+//LOGOUT USER
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    }
+}
 
 export const tokenConfig = getState => {
     //Get token from localstorage
