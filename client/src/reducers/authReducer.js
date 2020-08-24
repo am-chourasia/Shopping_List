@@ -2,7 +2,7 @@ import { LOGIN_FAIL, LOGIN_SUCCESS, REGISTER_FAIL,REGISTER_SUCCESS, AUTH_ERROR, 
 
 const initState = {
     token:              localStorage.getItem('token'),
-    isAuthenticated:    null,
+    isAuthenticated:    false,
     isLoading:          false,
     user:               null
 }
@@ -41,7 +41,7 @@ export default function( state = initState, action){
             return {
                 ...state,
                 token:              null,
-                isAuthenticated:    null,
+                isAuthenticated:    false,
                 isLoading:          false,
             };
 
