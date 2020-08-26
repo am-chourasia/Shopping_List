@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken');
 // public
 router.post('/', (req,res)=>{
     const {name, email, password} = req.body;
-    //Simpler validation
+    //Simpler validation whether all fields are filled
     if( !name || !email || !password){
         return res.status(400).json( { msg: " Please enter all feilds "})
     }
@@ -22,7 +22,7 @@ router.post('/', (req,res)=>{
         .then( user => {
             if(user)
                 return res.status(400).json({ msg: "User already exist"})
-            
+            // if existing user not found with same email
             const newUser = new User({
                 name, email, password
             })
@@ -32,17 +32,16 @@ router.post('/', (req,res)=>{
                 bcrypt.hash(newUser.password, salt, (err, hash)=>{
                     if(err)
                         throw err;
-                    newUser.password = hash;
+                    newUser.password = hash;                            // Storing the hashed password in the database
                     newUser.save()
                         .then( user =>{
-
+                            //Generating the token for the user using the user id
                             jwt.sign(                                  // singing means creating the jwt token signature using the data and the secret key that will later be used for verification of the token
                                 {id: user.id},
                                 config.get('jwtSecret'),
                                 { expiresIn: 3600*24 },    // 24 hour expiration time of the token
                                 (err, token) => {           // this is the callback after generating the token
                                     if(err) throw err;
-
                                     res.json({
                                         token,
                                         user: {

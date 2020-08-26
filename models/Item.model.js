@@ -9,6 +9,10 @@ const itemSchema = new Schema({
     date: {
         type: Date,
         default: Date.now()
+    },
+    username: {                 // userStamp of the item, i.e. who created the item
+        type: String,
+        required: true
     }
 });
 

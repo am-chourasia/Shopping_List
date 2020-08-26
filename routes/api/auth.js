@@ -55,7 +55,7 @@ router.post('/', (req,res)=>{
 // Private
 router.get('/user', auth, async (req, res) => {
     try {
-      const user = await User.findById(req.user.id).select('-password');
+      const user = await User.findById(req.user.id).select('-password');            // Returning the user without the password
       if (!user) throw Error('User Does not exist');
       res.json(user);
     } catch (e) {

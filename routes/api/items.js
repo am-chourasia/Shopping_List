@@ -7,33 +7,33 @@ const { model } = require('mongoose');
 // GET api/items
 // get all the items
 // public
-router.get('/', (req,res)=>{
+router.get('/', (req, res) => {
     Item.find()
-        .sort({date: -1})
-        .then( (items) => res.json(items))
+        .sort({ date: -1 })
+        .then((items) => res.json(items))
 })
 
 // POST api/items
 // post an item 
 // private
-router.post('/',auth,  (req,res)=>{
-    console.log(req.body);
+router.post('/', auth, (req, res) => {
     const newItem = new Item({
-        name: req.body.name
+        name: req.body.name,
+        username: req.body.username
     });
 
     newItem.save()
-        .then( (item) => res.json(item))
-        .catch( (err) => console.log("Error: "+err));
+        .then((item) => res.json(item))
+        .catch((err) => console.log("Error: " + err));
 })
 
 // DELETE api/items
 // delete an item by id
 // private
-router.delete('/:id', auth,  (req,res)=>{
+router.delete('/:id', auth, (req, res) => {
     Item.findByIdAndDelete(req.params.id)
-        .then( ()=> res.json( {Success : true}))
-        .catch( (err) => res.json( { Success: false}));
+        .then(() => res.json({ Success: true }))
+        .catch((err) => res.json({ Success: false }));
 })
 
 module.exports = router;

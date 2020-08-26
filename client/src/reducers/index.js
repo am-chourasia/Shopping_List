@@ -1,3 +1,5 @@
+//This reducer is only to combine all the reducers present to pass as an arfument in the createStore function 
+
 import { combineReducers } from 'redux';
 import itemReducer from './itemReducer.js';
 import authReducer from './authReducer.js';

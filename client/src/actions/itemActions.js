@@ -3,6 +3,7 @@ import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
+//To fetch items from the database
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
   axios
@@ -18,6 +19,8 @@ export const getItems = () => dispatch => {
     );
 };
 
+
+//Add item to the database
 export const addItem = item => (dispatch, getState) => {
   axios
     .post('/api/items', item, tokenConfig(getState))
@@ -32,6 +35,7 @@ export const addItem = item => (dispatch, getState) => {
     );
 };
 
+// Deleting item from the database
 export const deleteItem = id => (dispatch, getState) => {
   axios
     .delete(`/api/items/${id}`, tokenConfig(getState))
@@ -46,6 +50,7 @@ export const deleteItem = id => (dispatch, getState) => {
     );
 };
 
+//Set the state to loading the items
 export const setItemsLoading = () => {
   return {
     type: ITEMS_LOADING
