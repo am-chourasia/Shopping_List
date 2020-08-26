@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://tester:test1234@shopping.kbpnh.mongodb.net/Shopping?retryWrites=true&w=majority",
-    "jwtSecret": "sleepySecret"
+    "mongoURI": "YOUR MONGO_URI GOES HERE",
+    "jwtSecret": "Your JWT secret"
 }
